@@ -1,0 +1,25 @@
+<% provide(:title, @title) %>
+<div class="row-fluid">
+  <aside class="col-md-4 profile-card">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user, size: 100 %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section class='stats'>
+      <%= render "shared/stats" %>
+    </section>
+  </aside>
+  <div class="col-md-6 feed-card">
+    <% if @user.favorites.any? %>
+      <h3>Favorites (<%= @user.favorites.count %>)</h3>
+      <o1 class="microposts">
+        <%= render @favorites %>
+      </o1>
+      <%= will_paginate @favorites %>
+    <% else %>
+      <p>No favorites yet, click the star under a post to favorite it.</p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+$("#rt-<%= @micropost.id %> .rt-count").text(<%= @micropost.retweets.count %>)
+$("#rt-<%= @micropost.id %> .retweet").toggleClass("retweeted", <%= @micropost.retweets.count > 0 %>)

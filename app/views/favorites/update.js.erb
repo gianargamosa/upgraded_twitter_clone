@@ -1,0 +1,3 @@
+$("#fav-<%= @micropost.id %> .fav-count").text(<%= @micropost.favorites.count %>)
+$("#fav-<%= @micropost.id %> .favorite").toggleClass("favorited", 
+  <%= @micropost.favorites.count > 0 %>)

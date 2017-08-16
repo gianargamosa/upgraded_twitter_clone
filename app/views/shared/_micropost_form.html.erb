@@ -1,0 +1,12 @@
+<%= form_for(@micropost, html: { multipart: true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new micropost...", :tabindex => 1 %>
+  </div>
+  <span class="counter" data-toggle="tooltip" title="characters remaining">140</span>
+  <%= f.submit "Post", class: "btn btn-primary", disabled: true, :tabindex => 2 %>
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
+<% end %>
+
