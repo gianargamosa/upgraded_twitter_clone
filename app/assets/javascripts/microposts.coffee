@@ -4,7 +4,7 @@
 
 
 # javascript for creations of posts
-$(document).on 'page:change', ->
+$(document).on 'turbolinks:load', ->
 
   # sizing requirements for uploads
   $('#micropost_picture').bind change: ->

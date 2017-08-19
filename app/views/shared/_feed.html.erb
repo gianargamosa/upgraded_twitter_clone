@@ -1,5 +1,5 @@
 <% if @activities.any? %>
-  <ol class="microposts">
+  <ul class="list-group">
     <% for activity in @activities %>
       <% if activity.subject_type == "Micropost" %>
         <%= render partial: 'microposts/micropost',
@@ -13,6 +13,6 @@
       <% else %>
       <% end %>
     <% end %>
-  </ol>
+  </ul>
   <%= will_paginate @activities %>
 <% end %>
