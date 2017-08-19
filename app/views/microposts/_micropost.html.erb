@@ -1,5 +1,4 @@
-<li id="micropost-<%= micropost.id %>">
-
+<li id="micropost-<%= micropost.id %>" class="list-group-item">
   <% if user != false %>
     <div>
       <span class="glyphicon glyphicon-retweet retweeted-glyph"></span>
@@ -7,20 +6,17 @@
       <span class="retweeter"><%= link_to micropost.user.name, micropost.user, class: "retweeter" %></span>
     <div>
   <% end %>
-
-
-  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-
-  <span class="content">
-    <%= micropost.content %>
-    <% if micropost.picture? %>
-      <div class="picture">
-        <%= image_tag micropost.picture.url %>
-      </div>
-    <% end %>
-  </span>
-  <div class="tweet-actions">
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <!-- <img class="media-object" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWRmYzBkYjNlOCB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZGZjMGRiM2U4Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy40NzY1NjI1IiB5PSIzNi42NjQwNjI1Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="..." width="50px" height="50px"> -->
+        <%= image_tag micropost.user.avatar.thumb.url, class: 'media-object' %>
+      </a>
+    </div>
+    <div class="media-body">
+      <a class="media-heading"><%= link_to micropost.user.name, micropost.user %></a><br/>
+      <%= raw auto_link(micropost.content) %><br/>
+      <div class="tweet-actions">
     <span class="rt-select"
         id="rt-<%= micropost.id %>"
         data-toggle="tooltip"
@@ -50,7 +46,7 @@
       <% end %>
     </span>
   </div>
-    <%= form_for Retweet.new, remote: true, 
+  <%= form_for Retweet.new, remote: true, 
             :url => {:controller => :retweets, action: :update },
             :html => { :id => "retweet-#{micropost.id}" } do |f| %>
       <span><%= hidden_field_tag :micropost_id, micropost.id %></span>
@@ -61,5 +57,7 @@
             :html => { :id => "favorite-#{micropost.id}" } do |f| %>
       <span><%= hidden_field_tag :micropost_id, micropost.id %></span>
     <% end %>
+    </div>
+  </div>
 </li>
 

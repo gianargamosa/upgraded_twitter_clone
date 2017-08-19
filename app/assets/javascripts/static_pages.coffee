@@ -10,7 +10,7 @@ isBreakPoint = ( alias ) ->
 toggleLogoFloat = () ->
   $('#logo').toggleClass('logo_float', !(isBreakPoint('xs')) )
 
-$(document).on 'page:change', ->
+$(document).on 'turbolinks:load', ->
   
 
   # Resize formatting

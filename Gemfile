@@ -31,7 +31,7 @@ gem 'bcrypt', '3.1.9', platforms: [:ruby, :x64_mingw]
 gem 'twitter-text', '~> 1.14', '>= 1.14.7'
  # gem 'bcrypt-ruby', '3.0.0', :require => 'bcrypt'
 # gem 'bcrypt', platforms: :ruby
-gem 'wdm', '>= 0.1.0'
+# gem 'wdm', '>= 0.1.0'
 # gem 'bcrypt', '3.1.5', :require => 'bcrypt'
 gem 'faker'
 # gem 'redis'

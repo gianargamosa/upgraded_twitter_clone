@@ -18,7 +18,7 @@
 #
 
 class User < ActiveRecord::Base
-
+  mount_uploader :avatar, AvatarUploader
   has_many :microposts, dependent: :destroy
 
   has_many :active_relationships, class_name: "Relationship",
@@ -60,6 +60,8 @@ class User < ActiveRecord::Base
       format: { with: VALID_EMAIL_REGEX },
       uniqueness: { case_sensitive: false }
   )
+  validates_processing_of :avatar
+  validate :image_size_validation
 
 
   #password validations
@@ -200,6 +202,10 @@ class User < ActiveRecord::Base
 
     def downcase_email
       self.email.downcase!
+    end
+
+    def image_size_validation
+      errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
     end
 end
 
