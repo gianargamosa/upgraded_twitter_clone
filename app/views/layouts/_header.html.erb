@@ -1,12 +1,24 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-custom">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo", class: "logo_float" %>
+      <%= link_to root_path, id: "logo", class: "logo_float" do |f| %>
+        <i class="icon-social-twitter icons"></i>
+      <% end %>
+      <div class="col-sm-6">
+        <form class="navbar-form search-form" role="search">
+          <div class="input-group">
+              <input type="text" class="form-control search-input-field" placeholder="Search" name="q">
+              <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="icon-magnifier"></i></button>
+              </div>
+          </div>
+        </form>
+      </div>
       <ul class="nav navbar-nav navbar-right" >
         <li><%= link_to "Home", root_path  %></li>
         <li><%= link_to "Help",  help_path  %></li>
-
+        <li><a href="#"><span class="live">Live</span></a></li>
         <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "People", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
