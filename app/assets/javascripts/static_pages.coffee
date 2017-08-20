@@ -11,8 +11,15 @@ toggleLogoFloat = () ->
   $('#logo').toggleClass('logo_float', !(isBreakPoint('xs')) )
 
 $(document).on 'turbolinks:load', ->
+  # jQuery ->
+  # if $('.pagination').length
+  #   $(window).scroll ->
+  #     url = $('.pagination .next_page a').attr('href')
+  #     if url &&  $(window).scrollTop() > $(document).height() - $(window).height() - 50
+  #       $('.pagination').text("Loading more feeds...")
+  #       $.getScript(url)
+  #   $(window).scroll()
   
-
   # Resize formatting
   toggleLogoFloat()
     # on window resize with timeout

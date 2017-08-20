@@ -41,7 +41,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-
+gem 'redis', '~> 3.0'
 # API
 gem 'graphql'
 

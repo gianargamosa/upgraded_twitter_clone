@@ -2,7 +2,13 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
-
+  def broadcast
+    # binding.pry
+    # ActionCable.server.broadcast 'notifications_channel', followers: current_user.followers.ids
+    # ActionCable.server.broadcast "notifications_channel",
+    #   content:  current_user.followers.ids,
+    # head :ok
+  end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
