@@ -1,19 +1,21 @@
 <% if logged_in? %>
   <div class="row-fluid">
-    <aside class="col-md-4 profile-card">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="stats">
-      <%= render "shared/stats" %>
-      </section>
-      <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="col-md-6 feed-card">
-      <h3>Micropost Feed</h3>
+    <div class="col-md-11 col-md-offset-1">
+
+    
+    <div class="col-md-4">
+      <ul class="list-group">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul>
+    </div>
+    <div class="col-md-7">
+      <!-- <h3>Micropost Feed</h3> -->
       <%= render 'shared/feed' %>
+    </div>
     </div>
   </div>
 <% else %>

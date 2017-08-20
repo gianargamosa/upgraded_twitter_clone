@@ -1,5 +1,17 @@
 <% if @activities.any? %>
-  <ul class="list-group">
+  <ul class="list-group newsfeed">
+    <li class="list-group-item">
+      <div class="form-group has-feedback post-create-form-container">
+        <!-- <label class="control-label" for="inputSuccess2">Input with success</label> -->
+        <input type="text" class="form-control post-create-form-input" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+        <i class="icon-social-instagram icons form-control-feedback post-create-form"></i>
+        <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
+        <span id="inputSuccess2Status" class="sr-only">(success)</span>
+      </div>
+    </li>
+    <li class="list-group-item text-center">
+      View 12 New Tweets
+    </li>
     <% for activity in @activities %>
       <% if activity.subject_type == "Micropost" %>
         <%= render partial: 'microposts/micropost',

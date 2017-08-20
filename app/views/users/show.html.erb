@@ -1,21 +1,29 @@
 <% provide(:title, @user.name) %>
+<div class="bs-docs-header" id="content" tabindex="-1">
+  <div class="container">
+    <h1>Getting started</h1>
+    <p>An overview of Bootstrap, how to download and use, basic templates and examples, and more.</p>
+  </div>
+</div>
 <div class="row-fluid">
-  <aside class="col-md-4 profile-card">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user, size: 100 %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section class='stats'>
-      <%= render "shared/stats" %>
-    </section>
-  </aside>
-  <div class="col-md-6 feed-card">
-    <%= render 'follow_form' if logged_in? %>
-    <% if Activity.where(user_id: @user.id).any? %>
-      <h3>Microposts (<%= @activities.count %>)</h3>
-      <%= render 'shared/feed' %>
-    <% end %>
+  <div class="col-md-12 col-md-offset-1">
+    <aside class="col-md-4 profile-card">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for @user, size: 100 %>
+          <%= @user.name %>
+        </h1>
+      </section>
+      <section class='stats'>
+        <%= render "shared/stats" %>
+      </section>
+    </aside>
+    <div class="col-md-6 feed-card">
+      <%= render 'follow_form' if logged_in? %>
+      <% if Activity.where(user_id: @user.id).any? %>
+        <!-- <h3>Microposts (<%= @activities.count %>)</h3> -->
+        <%= render 'shared/feed' %>
+      <% end %>
+    </div>
   </div>
 </div>

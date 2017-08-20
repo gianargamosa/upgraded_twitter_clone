@@ -13,17 +13,37 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
+.navbar-custom {
+  border-bottom: #ccc 1px solid;
+}
+
+a {
+  color: #1B95E0;
+}
 
 /* universal */
 
 body {
   background-repeat: no-repeat;
 
-  background-image: url(image-path('bg.png'));
+  // background-image: url(image-path('bg.png'));
   background-attachment: fixed;
-  background-color: #C0DEED;
-
+  // background-color: #C0DEED;
 }
+
+.post-create-form {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+input.post-create-form-input {
+  margin-bottom: 0px !important;
+}
+
+.post-create-form-container {
+  margin-bottom: 0px !important;
+}
+
 
 section {
   overflow: auto;
@@ -73,13 +93,73 @@ P {
   line-height: 1.7em;
 }
 
+.live {
+  background: #e0245e;
+  color: #fff;
+  padding: 5px;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 4px;
+}
+
 
 /* header */
 
+.bs-docs-header {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  font-size: 24px;
+  text-align: left;
+}
+
+.bs-docs-header {
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+
+.bs-docs-header, .bs-docs-masthead {
+  position: relative;
+  padding: 30px 0;
+  color: #cdbfe3;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  background-color: #6f5499;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
+  background-image: -webkit-linear-gradient(top,#563d7c 0,#6f5499 100%);
+  background-image: -o-linear-gradient(top,#563d7c 0,#6f5499 100%);
+  background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+input {
+  // width: 300px !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.search-input-field {
+  width: 300px !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.search-form input {
+  border-right: none !important;
+}
+
+.search-form button {
+  border-left: none !important;
+}
+
+.search-form button:hover {
+  background: none !important;
+}
+
 #logo {
-  margin-right: 10px;
+  // margin-left: 20px !important;
   font-size: 1.7em;
-  color: #fff;
+  // color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -88,7 +168,7 @@ P {
 
 
 #logo::hover {
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -180,18 +260,48 @@ aside {
 }
 
 .retweeted-glyph {
-  font-size: 10px;
+  font-size: 14px;
   color: white;
-  background: #5c913b;
-  border: solid;
+  background: #17bf63;
+  // border: solid;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 3px;
   padding-right: 3px;
-  border-radius: 4px;
-  margin-left: 33px;
+  border-radius: 5px;
+  margin-left: 53px;
   margin-right: 4px
 
+}
+
+.tweet-action-tools li i {
+  font-size: 16px;
+}
+
+.tweet-action-tools li a {
+  color: #657786;
+}
+
+ul.newsfeed li:first-child {
+  background: #E6ECF0 !important;
+}
+
+
+.tweet-action-tools span {
+  color: #657786;
+}
+
+ul.tweet-action-tools li:first-child {
+  background: none !important;
+}
+
+.tweet-action-tools {
+  margin-top: 5px;
+}
+
+
+.tweet-action-tools li {
+  margin-right: 15px;
 }
 
 .retweeter {
@@ -201,14 +311,14 @@ aside {
 
 
 .retweet {
-  color: #ccd6dd;
+  color: #657786 !important;
 }
 .favorite {
-  color: #ccd6dd;
+  color: #657786;
 }
 
 .fav-count {
-  margin-right: 15px
+  // margin-right: 15px
 }
 
 .rt-count {
@@ -217,17 +327,17 @@ aside {
 
 
 .retweeted, .retweet:hover {
-  color: #5c913b !important;
+  color: #17bf63 !important;
   cursor: pointer;
 }
 .favorited, .favorite:hover {
-  color: #ffac33;
+  color: #ffac33 !important;
   cursor: pointer;
 }
 
 .tweet-actions {
   display: inline-block;
-  margin-left: 20px
+  margin-left: -8px
 }
 
 

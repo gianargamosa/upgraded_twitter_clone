@@ -1,11 +1,13 @@
 <li id="micropost-<%= micropost.id %>" class="list-group-item">
   <% if user != false %>
     <div>
-      <span class="glyphicon glyphicon-retweet retweeted-glyph"></span>
+      <!-- <span class="glyphicon glyphicon-retweet retweeted-glyph"></span> -->
+      <i class="icon-refresh retweeted-glyph"></i>
       <span class="retweeter"><%= link_to user.name, user, class: "retweeter" %> retweeted</span>
       <span class="retweeter"><%= link_to micropost.user.name, micropost.user, class: "retweeter" %></span>
     <div>
   <% end %>
+
   <div class="media">
     <div class="media-left">
       <a href="#">
@@ -14,9 +16,103 @@
       </a>
     </div>
     <div class="media-body">
-      <a class="media-heading"><%= link_to micropost.user.name, micropost.user %></a><br/>
+      <a class="media-heading"><%= link_to micropost.user.name, micropost.user %></a> &middot; <span class="text-muted"><%= time_ago_in_words(micropost.created_at) %> ago</span><br/>
       <%= raw auto_link(micropost.content) %><br/>
-      <div class="tweet-actions">
+      <ul class="list-inline tweet-action-tools">
+        <li>
+          <span>
+            <i class="icon-action-undo icons"></i>
+          </span>
+        </li>
+        <li>
+          <span class="rt-select" id="rt-<%= micropost.id %>" data-toggle="tooltip" data-placement="above" title="Retweet">
+          <i class="icon-refresh icons retweet<%= micropost.retweets.count > 0 ? ' retweeted' : '' %>"></i> <span class="rt-count<%= micropost.retweets.count > 0 ? ' retweeted' : ''%>"><%= micropost.retweets.count %></span>
+        </span>
+        </li>
+        <li>
+          <span class="fav-select" id="fav-<%= micropost.id %>" data-toggle="tooltip" data-placement="above" title="Favorite">
+            <i class="icon-star icons favorite<%= micropost.favorites.count > 0 ? ' favorited' : '' %>"></i> <span class="fav-count<%= micropost.favorites.count > 0 ? ' favorited' : '' %>"><%= micropost.favorites.count %></span>
+          </span>
+        </li>
+        <li>
+          <span>
+            <i class="icon-envelope icons"></i>
+          </span>
+        </li>
+        <li>
+          <% if current_user?(micropost.user) %>
+            <%= link_to micropost, method: :delete, data: {confirm: "You sure?"} do |f| %>
+              <i class="icon-trash icons"></i>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+      <!-- <div class="tweet-actions">
+        <span class="rt-select"
+            id="rt-<%= micropost.id %>"
+            data-toggle="tooltip"
+            data-placement="above"
+            title="Retweet">
+
+          <span class="glyphicon glyphicon-retweet retweet<%= micropost.retweets.count > 0 ? ' retweeted' : '' %>" aria-hidden='true'></span>
+          <span class="retweet rt-count<%= micropost.retweets.count > 0 ? " retweeted" : ""%>"><%= micropost.retweets.count %></span>
+        </span>
+
+        <span class="fav-select" 
+            id="fav-<%= micropost.id %>"
+            data-toggle="tooltip"
+            data-placement="above"
+            title="Favorite">
+          <span class="glyphicon glyphicon-star favorite<%= micropost.favorites.count > 0 ? ' favorited' : '' %>" aria-hidden='true'>
+          </span>
+          <span class="favorite fav-count<%= micropost.favorites.count > 0 ? " favorited" : "" %>"><%= micropost.favorites.count %></span>
+        </span>
+
+
+        <span class="timestamp">
+          <% if current_user?(micropost.user) %>
+            <%= link_to micropost, method: :delete,
+                                        data: {confirm: "You sure?"} do |f| %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+          <% end %>
+        </span>
+      </div> -->
+  <%= form_for Retweet.new, remote: true, 
+            :url => {:controller => :retweets, action: :update },
+            :html => { :id => "retweet-#{micropost.id}" } do |f| %>
+      <span><%= hidden_field_tag :micropost_id, micropost.id %></span>
+    <% end %>
+
+    <%= form_for Favorite.new, remote: true, 
+            :url => {:controller => :favorites, action: :update }, 
+            :html => { :id => "favorite-#{micropost.id}" } do |f| %>
+      <span><%= hidden_field_tag :micropost_id, micropost.id %></span>
+    <% end %>
+    </div>
+  </div>
+  <!-- <% if user != false %> -->
+    <!-- <div>
+      <span class="glyphicon glyphicon-retweet retweeted-glyph"></span>
+      <span class="retweeter"><%= link_to user.name, user, class: "retweeter" %> retweeted</span>
+      <span class="retweeter"><%= link_to micropost.user.name, micropost.user, class: "retweeter" %></span>
+    <div>
+ -->  <!-- <% end %> -->
+
+
+  <!-- <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %> -->
+  <!-- <%= image_tag micropost.user.avatar.thumb.url %> -->
+  <!-- <span class="user"><%= link_to micropost.user.name, micropost.user %></span> -->
+
+  <!-- <span class="content">
+    <%= raw auto_link(micropost.content) %>
+    <% if micropost.picture? %>
+      <div class="picture">
+        <%= image_tag micropost.picture.url %>
+      </div>
+    <% end %>
+  </span>
+ -->  <!-- <div class="tweet-actions">
     <span class="rt-select"
         id="rt-<%= micropost.id %>"
         data-toggle="tooltip"
@@ -45,19 +141,13 @@
                                     data: {confirm: "You sure?"} %>
       <% end %>
     </span>
-  </div>
-  <%= form_for Retweet.new, remote: true, 
-            :url => {:controller => :retweets, action: :update },
-            :html => { :id => "retweet-#{micropost.id}" } do |f| %>
-      <span><%= hidden_field_tag :micropost_id, micropost.id %></span>
-    <% end %>
+  </div> -->
+    <!-- <%= form_for Retweet.new, remote: true, :url => {:controller => :retweets, action: :update }, :html => { :id => "retweet-#{micropost.id}" } do |f| %> -->
+      <!-- <span><%= hidden_field_tag :micropost_id, micropost.id %></span> -->
+    <!-- <% end %> -->
 
-    <%= form_for Favorite.new, remote: true, 
-            :url => {:controller => :favorites, action: :update }, 
-            :html => { :id => "favorite-#{micropost.id}" } do |f| %>
-      <span><%= hidden_field_tag :micropost_id, micropost.id %></span>
-    <% end %>
-    </div>
-  </div>
+    <!-- <%= form_for Favorite.new, remote: true, :url => {:controller => :favorites, action: :update }, :html => { :id => "favorite-#{micropost.id}" } do |f| %> -->
+      <!-- <span><%= hidden_field_tag :micropost_id, micropost.id %></span> -->
+    <!-- <% end %> -->
 </li>
 
