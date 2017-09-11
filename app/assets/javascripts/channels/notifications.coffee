@@ -9,5 +9,22 @@ App.notifications = App.cable.subscriptions.create "NotificationsChannel",
   	# debugger
   	console.log(data)
     # Called when there's incoming data on the websocket for this channel
-  speak: ->
-  	@perform 'speak'
+  speak: (message) ->
+  	debugger
+  	@perform 'speak', content: message
+  	# $('#current-user-')
+
+# $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
+# 	if event.keyCode is 13 # return/enter = send
+
+# 		App.notifications.speak event.target.value
+# 		event.target.value = ''
+# 		event.preventDefault()
+$(document).on 'submit', '.create-form', (e) ->
+  e.preventDefault()
+  values = $(this).serializeArray()
+  # debugger;
+  console.log(values)
+  App.notifications.speak values[0]
+  $(this).trigger 'reset'
+  return

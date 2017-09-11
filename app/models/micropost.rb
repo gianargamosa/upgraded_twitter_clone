@@ -12,6 +12,7 @@
 
 class Micropost < ActiveRecord::Base
   belongs_to :user
+  # after_create_commit { BroadcastNotificationJob.perform_later self }
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true
@@ -27,6 +28,8 @@ class Micropost < ActiveRecord::Base
 
   after_create :create_activity
   after_destroy :destroy_activity
+
+  after_create_commit { MicropostBroadcastJob.perform_later(self) }
 
   private
     # Validates the size of an uploaded picture.

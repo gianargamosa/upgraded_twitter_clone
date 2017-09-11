@@ -2,11 +2,14 @@
   <ul class="list-group newsfeed" id="current-user-<%= current_user.id %>">
     <li class="list-group-item">
       <div class="form-group has-feedback post-create-form-container">
+        <form class="create-form">
         <!-- <label class="control-label" for="inputSuccess2">Input with success</label> -->
-        <input type="text" class="form-control post-create-form-input" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+        <input type="text" class="form-control post-create-form-input" id="inputSuccess2" aria-describedby="inputSuccess2Status" data-behavior="room_speaker" name="content">
         <i class="icon-social-instagram icons form-control-feedback post-create-form"></i>
         <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
         <span id="inputSuccess2Status" class="sr-only">(success)</span>
+        <input type="submit" class="btn btn-sm btn-success">
+        </form>
       </div>
     </li>
     <li class="list-group-item text-center">
@@ -14,14 +17,9 @@
     </li>
     <% for activity in @activities %>
       <% if activity.subject_type == "Micropost" %>
-        <%= render partial: 'microposts/micropost',
-                      locals: { micropost: activity.subject,
-                                user: false} %>
+        <%= render partial: 'microposts/micropost', locals: { micropost: activity.subject, user: false } %>
       <% elsif activity.subject_type == "Retweet" %>
-        <%= render partial: 'microposts/micropost', 
-                      locals: { micropost: activity.subject.micropost,
-                                user: activity.subject.user
-                              } %>
+        <%= render partial: 'microposts/micropost', locals: { micropost: activity.subject.micropost, user: activity.subject.user } %>
       <% else %>
       <% end %>
     <% end %>
